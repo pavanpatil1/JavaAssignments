@@ -5,6 +5,21 @@ import java.util.regex.Pattern;
 
 public class Quiz {
 
+    public static int score;
+    public static int correctanswer;
+    public static int wronganswer;
+    public static int totalquestion;
+
+
+    public static void Correct(){
+        score+=1;
+        correctanswer+=1;
+        totalquestion+=1;
+    }
+    public static void Wrong(){
+        wronganswer+=1;
+        totalquestion+=1;
+    }
 
     public static boolean isWord(String in){
         return Pattern.matches("[a-d]",in);
@@ -34,16 +49,12 @@ public class Quiz {
         bank.put("During World war II, when did Germany attack France \n" + "a.1940 \nb.1941 \nc.1942 \nd.None ","a");
         bank.put("Golden template, Amritsar is india's \n" + "a.largest gurdwara \nb.oldest gurudwara \nc.both a & b \nd. ALl ","a");
 
-        int score = 0;
-        int correctanswer = 0;
-        int wronganswer = 0;
-        int totalquestion = 0;
-        boolean isNumber;
+        boolean isNumber = false;
 
-       List<String> keylist = new ArrayList<String>(bank.keySet());
+        List<String> keylist = new ArrayList<String>(bank.keySet());
 
-       int random = new Random().nextInt(keylist.size());
-       String randomkey = keylist.get(random);
+        int random = new Random().nextInt(keylist.size());
+        String randomkey = keylist.get(random);
 
         System.out.println("------Quiz Application------");
 
@@ -52,37 +63,73 @@ public class Quiz {
             System.out.println(name);
             Scanner input = new Scanner(System.in);
 
-            do {
-                System.out.println("Enter Answer = ");
-                String answer = input.nextLine();
-                String answers = bank.get(name);
-                if(answer.equals(answers)){
-                    score+=1;
-                    correctanswer+=1;
-                    totalquestion+=1;
-                }
-                else{
-                    wronganswer+=1;
-                    totalquestion+=1;
-                }
-                if(totalquestion >= 10){
-                    System.out.println("your score is "+score + ", Wrong Answer "+wronganswer + ", Correct Answer "+correctanswer);
-                    System.exit(0);
-                }
-                if(wronganswer >= 4){
-                    System.out.println("Sorry you are Fail..");
-                    System.exit(0);
-                }
+            String num = String.valueOf(isNumber);
+//            System.out.println(num);
 
-                if (answer.length() > 1 || isWord(answer) == false || isNum(answer) == true) {
-                    System.out.println("Invalid Input");
-                    isNumber = false;
-                }
-                else {
-                    isNumber = true;
-                }
+            switch (num){
+                case "false":
+                    System.out.println("Enter Answer = ");
+                    String answer = input.nextLine();
+                    String answers = bank.get(name);
+
+
+                    if(answer.equals(answers)){
+                        Correct();
+                    }
+                    else{
+                        Wrong();
+                    }
+
+
+                    if(totalquestion >= 10){
+                        System.out.println("your score is "+score + ", Wrong Answer "+wronganswer + ", Correct Answer "+correctanswer);
+                        System.exit(0);
+                    }
+                    if(wronganswer >= 4){
+                        System.out.println("Sorry you are Fail..");
+                        System.exit(0);
+                    }
+
+                    if (answer.length() > 1 || isWord(answer) == false || isNum(answer) == true) {
+                        System.out.println("Invalid Input");
+                        isNumber = false;
+                    }
+                    else {
+                        isNumber = true;
+                    }
+
+
+                case "true":
+                    System.out.println("Enter Answer = ");
+                    answer = input.nextLine();
+                    answers = bank.get(name);
+
+
+                    if(answer.equals(answers)){
+                        Correct();
+                    }
+                    else{
+                        Wrong();
+                    }
+
+
+                    if(totalquestion >= 10){
+                        System.out.println("your score is "+score + ", Wrong Answer "+wronganswer + ", Correct Answer "+correctanswer);
+                        System.exit(0);
+                    }
+                    if(wronganswer >= 4){
+                        System.out.println("Sorry you are Fail..");
+                        System.exit(0);
+                    }
+
+                    if (answer.length() > 1 || isWord(answer) == false || isNum(answer) == true) {
+                        System.out.println("Invalid Input");
+                        isNumber = false;
+                    }
+                    else {
+                        isNumber = true;
+                    }
             }
-            while (!(isNumber));
 
         }
         System.out.println("your score is "+score + " Wrong Answer "+wronganswer + " Correct Answer "+correctanswer + "total question" + totalquestion);
