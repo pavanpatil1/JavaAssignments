@@ -1,0 +1,22 @@
+
+
+
+create table user(id int autoincrement primary key,name varchar(100),email varchar(100) unique,contact int(255));
+
+
+insert into user values(1,'pavan patil','pavanp@mitaoe.ac.in',8989876543);
+
+
+mysql> select * from user;
++----+-------------+---------------------+------------+
+| id | name        | email               | contact    |
++----+-------------+---------------------+------------+
+|  1 | pavan patil | pavanp@mitaoe.ac.in | 1234567898 |
+|  2 | pavan patil | patil@gmail.com     | 1234567898 |
++----+-------------+---------------------+------------+
+2 rows in set (0.00 sec)
+
+
+mysql> insert into user values(3,'pavan patil','pavanp@mitaoe.ac.in',1234567876);
+ERROR 1062 (23000): Duplicate entry 'pavanp@mitaoe.ac.in' for key 'email'
+
