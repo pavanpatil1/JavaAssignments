@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 2 Assignment</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="lib/angular.min.js"></script>
+    <script src="dirpagination.js"></script>
+</head>
+<body>
+    
+    <div class="main" ng-app="myApp" ng-controller="MyCtrl">
+        <br><br>
+      <center>
+        <input type="text" placeholder="search by name" ng-model="search">
+        <select ng-model="pageSize"  id="pageSize" >
+            <option value="1">1</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="25">25</option>
+         </select>
+      </center>
+      
+         <br><br>
+         <table class="table" id="table">
+             <tr>
+                 <th>id</th>
+                 <th>name</th>
+                 <th>address</th>
+             </tr>
+           
+             <tr dir-paginate="item in data | itemsPerPage:pageSize" >
+                 <td> {{item.id}}</td>
+                 <td> {{item.name}}</td>
+                 <td> {{item.address}} </td>
+             </tr>
+         </table>
+         <br><br>
+         <dir-pagination-controls 
+         max-size="7"
+         boundary-links="true" 
+         class="dirpaginate"
+         style="float: right;text-decoration: none;"
+         
+         >
+         </dir-pagination-controls>
+         <br><br><br>
+        </div>
+        
+        <script>
+        
+         var app=angular.module('myApp', ['angularUtils.directives.dirPagination']);
+        
+         app.controller('MyCtrl', ['$scope', '$filter', function ($scope, $filter) {
+         $scope.currentPage = 0;
+         $scope.pageSize = 10;
+         $scope.data = [];
+         $scope.q = '';
+        
+         $scope.getData = function () {
+        
+          return $filter('filter')($scope.data, $scope.q)
+        
+           }
+        
+           $scope.numberOfPages=function(){
+            return Math.ceil($scope.getData().length/$scope.pageSize);                
+           }
+        
+         
+            $scope.data.push(
+                {id : 32 , name : 'Kunal Koli' , address:'chalisgaon'},
+            {id : 33 , name : 'Sarvesh Pathak' , address:'chalisgaon'},
+            {id : 34 , name : 'Kedar Parswear' , address:'chalisgaon'},
+            {id : 35 , name : 'Pavan Patil' , address:'chalisgaon'},
+            {id : 36 , name : 'Nishad Patil' , address:'chalisgaon'},
+            {id : 37 , name : 'Gaurav Medhane' , address:'chalisgaon'},
+            {id : 38 , name : 'Pratik Patil' , address:'chalisgaon'},
+            {id : 39 , name : 'Om Gaye' , address:'chalisgaon'},
+            {id : 40 , name : 'Dhanesh Pawar' , address:'chalisgaon'},
+            {id : 41 , name : 'Jaypal Yadav' , address:'chalisgaon'},
+            {id : 42 , name : 'Sayrabh Gawade' , address:'chalisgaon'},
+            {id : 43 , name : 'Ashutosh Kamble' , address:'chalisgaon'},
+            {id : 44 , name : 'Sanjay Patil' , address:'chalisgaon'},
+            {id : 45 , name : 'Ajiknya hatkar' , address:'chalisgaon'},
+            {id : 46 , name : 'bonish agrawal' , address:'chalisgaon'},
+            {id : 47 , name : 'shyam pandav' , address:'chalisgaon'},
+            {id : 48 , name : 'rajkumar yadav' , address:'chalisgaon'},
+            {id : 49 , name : 'vaibhav saini' , address:'chalisgaon'},
+            {id : 50 , name : 'pappu marathe' , address:'chalisgaon'},
+            {id : 51 , name : 'avinash shete' , address:'chalisgaon'},
+            {id : 52 , name : 'chadramani ahire' , address:'chalisgaon'},
+            {id : 53 , name : 'kalpesh sonar' , address:'chalisgaon'},
+            {id : 54 , name : 'sagar surayanshi' , address:'chalisgaon'},
+            {id : 55 , name : 'akash chavan' , address:'chalisgaon'},
+            {id : 56 , name : 'devenand pardeshi' , address:'chalisgaon'}
+            );
+           }
+
+          ]);
+        
+                app.filter('startFrom', function() {
+            return function(input, start) {
+            start = +start; //parse to int
+            return input.slice(start);
+           }
+          });
+          </script>
+
+
+</body>
+</html>

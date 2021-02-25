@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="formController">
+    
+
+    <center>
+        <table border="1">
+            <tr ng-repeat="x in data">
+                <td>{{ x.pname }}</td>
+                <td>{{x.pmob}}</td>
+                <td>{{ x.bdate }}</td>
+            </tr>
+        </table>
+        
+    </center>
+
+<script>
+
+var app = angular.module('myApp',['ngRoute']);
+
+app.config(function($routeProvider) {
+    $routeProvider
+    .when("/", {
+        templateUrl : "day7.html"
+    })
+    .when("/showdata", {
+        templateUrl : "showdata.html"
+    })
+ 
+})  ;
+
+app.controller('formController', function($scope, $http) {
+
+    var config = {headers:  {
+        
+        'Accept': 'application/json;',
+        "X-Testing" : "testing"
+    }
+};
+
+
+
+    $http.get("http://localhost:8282/allEmp",config)
+  .then(function(response) {
+      $scope.data = response.data;
+      console.log(response.data);
+  });
+
+
+
+
+});
+   
+
+</script>
+
+
+</body>
+</html>

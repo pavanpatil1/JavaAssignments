@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="day7.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+    <title>Day 7</title>
+</head>
+<body ng-app="myApp" ng-controller="formController">
+    
+<div class="form">
+    
+    <nav>
+        <div class="logo">
+            <img src="logo.jpg" alt="">
+        </div>
+        <div class="nav-links">
+            <ul>
+                <li><a ng-click="ref();" style="cursor: pointer;">Home</a></li>
+                <li><a ng-click="show();" style="cursor: pointer;">Show Data</a></li>
+                <li><a href="">Contact us</a></li>
+
+            </ul>
+        </div>
+    </nav>
+
+
+    <div class="container"  >
+
+ <div class="tabledata">
+    <table border="1"  ng-show = "IsHiddenss">
+        <tr>
+            <th>Patient Name</th>
+            <th>Patient Mobile</th>
+            <th>Patient DOB</th>
+        </tr>
+        <tr ng-repeat="x in data">
+            <td>{{ x.pname }}</td>
+            <td>{{x.pmob}}</td>
+            <td>{{ x.bdate }}</td>
+        </tr>
+    </table>
+ </div>
+        <div class="shadow-div" ng-hide = "IsHidden">
+            
+            <div class="right-half">
+                <img src="undraw_medical_care_movn.svg" height="160px" alt="">
+                <h2>Patient registration</h2>
+            </div>
+
+            <div class="left-half">
+               <center> <p style="color: green;">{{msg}}</p></center>
+               <br>
+                <form name="form" method="POST">
+                    <label for="">Name : </label>
+                    <input type="text" name="pname" ng-model="pname" ng-minlength="2" ng-maxlength="10" placeholder="Enter Name Here" required><br>
+                    <span id="namevalid" ng-show="form.name.$touched && form.name.$invalid" style="color: red;">name is min 2 and max 10 Character</span>
+
+                    <br><br>
+                    <label for="">Mobile No.</label>
+                    <input type="number" name="mobno" ng-model="pmob" ng-minlength="10" ng-maxlength="10" placeholder="Enter Mobile Number Here" required><br>
+                    <span id="numbervalid" ng-show="form.mobno.$touched && form.mobno.$invalid" style="color: red;">Phone number required</span> 
+                    <br><br>
+                    <label for="">Date of Birth</label>
+                    <input type="date" name="date" ng-model="bdate" max="{{dates}}" placeholder="Date of Birth"  required><br>
+                    <span id="datevalid" ng-show="form.date.$touched && form.date.$invalid" style="color: red;">date is required</span>
+                    <br>
+                   <div style="display: flex; gap: 70px;">
+                    <button ng-click="myFunc(pname,pmob,bdate)">Submit</button>
+                   
+                   </div>
+                </form>
+            </div>
+            
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+
+var app = angular.module('myApp',["ngRoute"]);
+
+
+app.controller('formController', function($scope, $http) {
+
+    var config = {headers:  {
+        
+        'Accept': 'application/json;',
+        "X-Testing" : "testing"
+    }
+};
+
+
+$scope.pname = null;
+$scope.pmob = null;
+$scope.bdate = null;
+
+$scope.myFunc = function(pname,pmob,bdate) {
+
+    
+
+var data = {
+
+    pname: pname,
+
+    pmob: pmob,
+
+    bdate: bdate
+
+};
+
+
+$http.post('http://localhost:8282/store', data, config)
+   .then(
+       function(response){
+         $scope.msg = "data not saved";
+       }, 
+       function(response){
+        $scope.msg = "data saved Sucessfully";
+       }
+    );
+
+};
+
+
+
+
+$scope.show = function(){
+    
+    $scope.IsHiddenss = true;
+    $scope.IsHidden = true;
+            $scope.ShowHide = function () {
+              
+                $scope.IsHidden = $scope.IsHidden ? false : true;
+            }
+
+
+
+
+
+    $http.get("http://localhost:8282/alldata",config)
+  .then(function(response) {
+      $scope.data = response.data;
+      console.log(response.data);
+  });
+}
+
+
+
+$scope.ref = function(){
+    window.location.reload();
+}
+
+
+        var date = new Date;
+        var month= date.getMonth()+1;
+        $scope.dates = date.getFullYear() + "-0" +  month  +  "-" +  date.getDate();
+      
+
+
+
+
+});
+    
+</script>
+
+
+</body>
+</html>
+

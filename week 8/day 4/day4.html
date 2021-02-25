@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day 4</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="lib/angular.min.js"></script>
+</head>
+
+
+<body ng-app="myApp">
+   <br><br><br>
+   <center>
+    <form name="myForm">
+
+        <input type="text" class="form-control" only-number />
+
+        </form>
+   </center>
+  
+<script>
+
+var app = angular.module('myApp', []);
+app.directive("onlyNumber", function () {
+            return {
+                restrict: "A",
+                link: function (scope, element, attr) {
+                    element.bind('input', function () {
+                        var position = this.selectionStart - 1;
+                     
+                      
+                        var fixed = this.value.replace(/[^-?0-9\.]/g, '');  
+                        if (fixed.charAt(0) === '.')                 
+                            fixed = fixed.slice(1);
+
+
+                        var pos = fixed.indexOf(".") + 1;
+                        // if (pos >= 0)               
+                        //     fixed = fixed.substr(0, pos) + fixed.slice(pos).replace('.', '');  
+
+                        if (this.value !== fixed) {
+                            this.value = fixed;
+                            this.selectionStart = position;
+                            this.selectionEnd = position;
+                        }
+                    });
+                }
+            };
+        });
+
+
+
+</script>
+
+</body>
+</html>

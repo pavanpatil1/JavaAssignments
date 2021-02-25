@@ -1,0 +1,85 @@
+*{
+    margin: 0%;
+    padding: 0%;
+
+}
+
+body{
+    /* background: #a4a4fd; */
+
+}
+
+
+.main{
+    margin-top: 100px;
+    margin-left: 100px;
+    margin-right: 100px;
+    
+}
+
+.tablediv{
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+#table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  
+  }
+  
+  #table td, #table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+
+  
+  #table tr:hover {background-color: #ddd;}
+  
+  #table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #a4a4fd;;
+    color: white;
+  }
+
+  input[type=text],select {
+    width: 20%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
+
+
+  input.ng-invalid.ng-touched{
+    border: 2px solid red;
+  }
+
+  .pagination{
+    list-style-type: none;
+    display: flex;
+  
+  }
+
+  .pagination a{
+    padding: 10px;
+  }
+
+  input[type=text],input[type=number],input[type=file],input[type=date],textarea{
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  
+  .pagination a {
+    padding: 10px;
+  
+  
+  }

@@ -1,0 +1,92 @@
+*{
+    margin: 0%;
+    padding: 0%;
+
+}
+
+
+.container{
+    margin-top: 60px;
+    margin-left: 380px;
+    height: 450px;
+    padding-left: 50px;
+    padding-top: 50px;
+    width: 680px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.shadow-div{
+   
+}
+
+.left-half{
+  float: left;
+  width: 300px;
+
+}
+.right-half{
+  float: left;
+  padding-top: 100px;
+  height: 260px;
+  width: 300px;
+  text-align: center;
+}
+
+.right-half h2{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+input[type=text],input[type=number],input[type=file],input[type=date],textarea{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  button {
+    width: 50%;
+    background-color: #3498db;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+
+  nav{
+    width: 80%;
+    position: sticky;
+    margin: 20px auto;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  .logo{
+    flex-basis: 20px;
+  }
+
+  .logo img{
+    width: 85px;
+  }
+
+  .nav-links{
+    flex: 1;
+    text-align: right;
+  }
+
+  .nav-links ul li{
+      list-style-type: none;
+      display: inline-block;
+      margin: 0 20px;
+  }
+
+  .nav-links ul li a{
+    text-decoration: none;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+  }
