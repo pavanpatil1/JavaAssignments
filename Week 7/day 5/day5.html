@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+
+<div class="container" id="quizContainer">
+    <div class="title">
+        Quiz
+    </div><br>
+    <div id="question" class="question"></div>
+    <br>
+        <label class="option">
+            <input type="radio" name="option" value="1"><span id="opt1"></span>
+        </label><br><br>
+        <label class="option">
+            <input type="radio" name="option" value="2"><span id="opt2"></span>
+        </label><br><br>
+        <label class="option">
+            <input type="radio" name="option" value="3"><span id="opt3"></span>
+        </label><br><br>
+        <label class="option">
+            <input type="radio" name="option" value="4"><span id="opt4"></span>
+        </label><br><br>
+        <button id="nextbutton" class="next-btn" onclick="return loadNextQuestion();">Next</button>
+</span>        
+
+</div>
+
+<div class="resultblock" id="resultblock" style="display: none;">
+<div class="resultinside">
+    <div id="result">
+        
+    </div>
+</div>
+
+<div class="questioninside">
+    <div class="que" id="que"></div>
+
+<br><br>
+</div>
+
+</div>
+    
+
+<script src="questionbank.js"></script>
+<script src="result.js"></script>
+</body>
+</html>
